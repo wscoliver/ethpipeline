@@ -13,7 +13,10 @@ grunt
 ```
 will build from source and pack it into `dist` folder.
 ## Description
-Ethereum provides three functions for finer grain control over your Ethereum contract deployment.
+Ethpipeline provides three functions for finer grain control over your Ethereum contract deployment.
+- compileContract: Compiles a contract file and returns contract and compiler information.
+- deployContract: Compiles and deploys a contract on the blockchain with provider specified in .env.
+- mockContract: Compiles, deploys and returns a contract instance on the blockchain with provider specified in .env.
 
 ### compileContract
 Compiles the solidity file found at `/path/to/contract.sol` and returns contract and compiler info.
