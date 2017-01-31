@@ -1,6 +1,11 @@
 # ethpipeline
 Ethereum Contract Pipeline Library
 ## Version 1.0.0
+## Dependencies
+Ethpipeline can work with a running Geth node or a node mocked by **testrpc**. We recommend testrpc for development purposes so you dont use any real gas to deploy your contracts. Run testrpc before you run your tests with ethpipeline.
+```bash
+testrpc
+```
 ## Building from source
 Clone this repository, and then using
 ```bash
@@ -11,6 +16,7 @@ will build from source and pack it into `dist` folder.
 Ethereum provides three functions for finer grain control over your Ethereum contract deployment.
 
 ### compileContract
+Compiles the solidity file found at `/path/to/contract.sol` and returns contract and compiler info.
 ```javascript
 import pipeline
 
@@ -21,9 +27,9 @@ pipeline.compileContract('path/to/contract.sol').then(function(res) {
 })
 ```
 #### Arguments
-path String: full path to the location of your contract.
+path **String**: full path to the location of your contract.
 #### Returns
-result Object:
+result **Object**:
 ```javascript
 {
   "test": {
@@ -62,4 +68,36 @@ result Object:
   }
 }
 ```
+### deployContract
+Compiles and deploys the solidity contract found at `/path/to/contract.sol` and deploys it on the blockchain, returning the transaction hash, contract address and contract ABI definition.
+``` javascript
+import pipeline
+
+pipeline.deployContract({ name: 'swap', path: '/path/to/swap.sol'}).then(function(res) {
+  // Returns the hash, address and abi information.
+}).catch(function(err) {
+  if(err) { console.log(err) }
+})
+
+```
+#### Arguments
+path **String**: full path to the location of your contract.
+name **String**: name of your contract.
+#### Returns
+result **Array**: containing the transaction hash, contract address and contract abi definition.
+
+### mockContract
+Compiles, deploys and returns the contract instance so you can use it for testing immediately.
+```javascript
+import pipeline
+ pipeline.mockContract({ name: 'swap', path: '/path/to/swap'}).then(function(contract) {
+   mockContract = contract
+ })
+```
+#### Arguments
+path **String**: full path to the location of your contract.
+name **String**: name of your contract.
+#### Returns
+contract **contractInstance** an instance of the Ethereum contract.
+
 
