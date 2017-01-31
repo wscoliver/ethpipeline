@@ -17,6 +17,8 @@ Ethpipeline provides three functions for finer grain control over your Ethereum 
 - compileContract: Compiles a contract file and returns contract and compiler information.
 - deployContract: Compiles and deploys a contract on the blockchain with provider specified in .env.
 - mockContract: Compiles, deploys and returns a contract instance on the blockchain with provider specified in .env.
+## Usage
+Please refer to unit and contract tests written under src/spec.
 
 ### compileContract
 Compiles the solidity file found at `/path/to/contract.sol` and returns contract and compiler info.
