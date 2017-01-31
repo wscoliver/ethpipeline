@@ -7,7 +7,7 @@ import path from 'path'
 describe('#Core Tests', function () {
   describe('#compileContract', function () {
     it('should compile the contract and give us the byte code and ABI.', function(done) {
-      let fixturePath = path.join(__dirname, '../fixtures/one.sol')
+      let fixturePath = path.join(__dirname, '../../fixtures/one.sol')
       pipeline.compileContract({ path: fixturePath }).then(function(res) {
         let expected = {
           swap: {
@@ -24,9 +24,9 @@ describe('#Core Tests', function () {
   })
   describe('#deployContract', function () {
     it('should deploy the contract and give us the hash and address', function(done) {
-      let fixturePath = path.join(__dirname, '../fixtures/one.sol')
+      let fixturePath = path.join(__dirname, '../../fixtures/one.sol')
       pipeline.deployContract({ name: 'swap', path: fixturePath }).then(function(res) {
-        console.log(res)
+        assert(res.length, 3)
         done()
       })
     })
